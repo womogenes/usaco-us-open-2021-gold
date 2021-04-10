@@ -26,8 +26,6 @@ int query(int idx, vector<int>& ft) {
 }
 
 int main() {
-
-  //cout << "hello world" << "\n";
   
   int N;
   cin >> N;
@@ -39,22 +37,19 @@ int main() {
   long long ans = 0;
 
   for (int i = 0; i < N; i++) {
-    //cout << "i: " << i << "\n";
-    int el;
-    cin >> el;
+    int breed;
+    cin >> breed;
 
-    if (last_occ[el] != -1) {
-      //cout << el << " ";
-      update(last_occ[el], -1, ft);
-
+    if (last_occ[breed] != -1) {
       // Get unique elements
-      int unique = query(i, ft) - query(last_occ[el], ft);
-      //cout << unique << "\n";
+      int unique = query(i, ft) - query(last_occ[breed], ft);
       ans += unique;
+
+      update(last_occ[breed], -1, ft);
     }
     update(i, 1, ft);
 
-    last_occ[el] = i;
+    last_occ[breed] = i;
   }
 
   // After that, we want to go from last occurence till the end
